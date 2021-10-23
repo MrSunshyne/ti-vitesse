@@ -1,0 +1,19 @@
+{
+  "cSpell.words": ["Vitesse"],
+  "prettier.enable": false,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+  },
+  "files.associations": {
+    "*.css": "postcss",
+  },
+  "i18n-ally.localesPaths": [
+    "locales",
+    "node_modules.bak/eslint/messages",
+    "node_modules.bak/yargs/locales",
+    "node_modules.bak/highlight.js/lib/languages",
+    "node_modules.bak/workbox-core/models/messages",
+    "node_modules.bak/workbox-core/src/models/messages"
+  ]
+}
