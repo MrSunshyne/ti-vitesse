@@ -35,11 +35,6 @@ Mocking up web app with <sup><em>ti</em></sup><b>Vitesse</b><br>
 
 ## Pre-packed
 
-### UI Frameworks
-
-- [Windi CSS](https://github.com/windicss/windicss) (On-demand [TailwindCSS](https://tailwindcss.com/)) - lighter and faster, with a bunch of additional features!
-  - [Windi CSS Typography](https://windicss.org/plugins/official/typography.html)
-
 ### Icons
 
 - [Iconify](https://iconify.design) - use icons from any icon sets [🔍Icônes](https://icones.netlify.app/)
