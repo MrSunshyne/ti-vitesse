@@ -1,10 +1,14 @@
-@import './markdown.css';
+/* @import './markdown.css'; */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html.dark {
+  background: #121212;
+}
 
+/* 
 html,
 body,
 #app {
@@ -13,9 +17,7 @@ body,
   padding: 0;
 }
 
-html.dark {
-  background: #121212;
-}
+
 
 #nprogress {
   pointer-events: none;
@@ -45,4 +47,4 @@ html.dark {
     opacity-75 transition duration-200 ease-in-out
     hover:opacity-100 hover:text-teal-600;
   font-size: 0.9em;
-}
+} */

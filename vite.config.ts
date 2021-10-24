@@ -1,10 +1,10 @@
-import path from 'path'
 import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import Layouts from 'vite-plugin-vue-layouts'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import { resolve } from 'path';
 import Components from 'unplugin-vue-components/vite'
 import AutoImport from 'unplugin-auto-import/vite'
 import Markdown from 'vite-plugin-md'
@@ -17,7 +17,7 @@ const markdownWrapperClasses = 'prose prose-sm m-auto text-left container'
 export default defineConfig({
   resolve: {
     alias: {
-      '~/': `${path.resolve(__dirname, 'src')}/`,
+      '@': resolve(__dirname, './src'),
     },
   },
   plugins: [
@@ -76,10 +76,9 @@ export default defineConfig({
     // }),
 
     // https://github.com/antfu/vite-plugin-md
-    // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
+    // Don't need this? Try vitesse-lite: https://github.com/MrSunshyne/ti-vitesse-lite
     Markdown({
       wrapperClasses: markdownWrapperClasses,
-      // headEnabled: true,
       markdownItSetup(md) {
         // https://prismjs.com/
         md.use(Prism)

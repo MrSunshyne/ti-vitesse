@@ -15,5 +15,8 @@
     "node_modules.bak/highlight.js/lib/languages",
     "node_modules.bak/workbox-core/models/messages",
     "node_modules.bak/workbox-core/src/models/messages"
-  ]
+  ],
+  "eslint.alwaysShowStatus": true,
+  "eslint.codeActionsOnSave.mode": "problems",
+  "eslint.format.enable": true
 }

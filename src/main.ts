@@ -1,16 +1,14 @@
-// register vue composition api globally
+import App from '@/App.vue'
 import { createApp } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { createPinia } from 'pinia'
 
-import App from './App.vue'
-
-// your custom styles here
-import './styles/main.css'
+import '@/styles/main.css'
 
 const routes = setupLayouts(generatedRoutes)
+
 const router = createRouter({
   history: createWebHistory(),
   routes,
@@ -27,8 +25,9 @@ const router = createRouter({
 });
 
 const pinia = createPinia()
+
 const app = createApp(App);
+
 app.use(router);
 app.use(pinia);
-
 app.mount('#app');

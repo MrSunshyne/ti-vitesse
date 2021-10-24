@@ -1,15 +1,16 @@
 const colors = require('tailwindcss/colors')
 
-/** @type {import("@types/tailwindcss/tailwind-config").TailwindConfig } */
 module.exports = {
   mode: 'jit',
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  safelist : ['prose', 'prose-sm', 'm-auto', 'text-left', 'container'],
+  darkMode: 'class',
   variants: {
     extend: {
       backgroundColor: ['odd'],
       textAlign: ['last'],
     },
-  },
+  }, 
   theme: {
     extend: {
       colors: {
@@ -62,13 +63,12 @@ module.exports = {
         '8xl': '100rem',
       },
     },
-  },
-  darkMode: 'class',
+  },  
   plugins: [
     require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/line-clamp'),
     require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/line-clamp'),
+    require('@tailwindcss/typography'),
     function({ addBase, theme }) {
       function extractColorVars(colorObj, colorGroup = '') {
         return Object.keys(colorObj).reduce((vars, colorKey) => {
