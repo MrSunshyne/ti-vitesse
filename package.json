@@ -14,13 +14,15 @@
     "@tailwindcss/line-clamp": "^0.2.2",
     "@tailwindcss/typography": "^0.4.1",
     "@vueuse/core": "^6.5.3",
+    "apexcharts": "^3.29.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.0-rc.11",
     "prism-theme-vars": "^0.2.2",
     "vue": "^3.2.19",
     "vue-demi": "^0.11.4",
     "vue-i18n": "^9.1.9",
-    "vue-router": "^4.0.11"
+    "vue-router": "^4.0.11",
+    "vue3-apexcharts": "^1.4.1"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.9.0",

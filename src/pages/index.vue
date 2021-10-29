@@ -10,6 +10,21 @@ const go = () => {
     router.push(`/hi/${encodeURIComponent(name.value)}`)
 }
 
+const chartOptions = {
+  chart: {
+    id: "vuechart-example",
+  },
+  xaxis: {
+    categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+  },
+}
+
+const series = [
+  {
+    name: "series-1",
+    data: [30, 40, 35, 50, 49, 60, 70, 91],
+  },
+]
 </script>
 
 <template>
@@ -45,6 +60,16 @@ const go = () => {
     <div class="mx-auto">
       <h2>Hello</h2>
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis laudantium eum cum nemo quibusdam quia magnam ab consequatur commodi molestiae facere eius nesciunt, odio, voluptate, praesentium voluptates sed sequi delectus.</p>
+    </div>
+
+    <div class="flex flex-col items-center">
+      <h1 class="text-xl font- mt-10">Test Apex Charts</h1>
+      <apexchart
+        width="500"
+        type="bar"
+        :options="chartOptions"
+        :series="series"
+      ></apexchart>
     </div>
   </div>
 </template>
