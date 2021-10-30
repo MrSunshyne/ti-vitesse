@@ -20,6 +20,12 @@ import { isDark, toggleDark } from '@/logic'
         <carbon-dicom-overlay />
       </router-link>
 
+      <router-link class="icon-btn mx-2" to="/readme" title="Markdown files">
+        <carbon-pedestrian />
+      </router-link>
+
+      <router-link class="icon-btn mx-2" to="/charts" title="Markdown files">Charts</router-link>
+
       <a
         class="icon-btn mx-2"
         rel="noreferrer"

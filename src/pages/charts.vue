@@ -53,5 +53,5 @@ const go = () => {
 
 <route lang="yaml">
 meta:
-  layout: home
+  layout: dashboard
 </route>
