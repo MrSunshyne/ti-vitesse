@@ -1,3 +1,6 @@
+# Direct routing to Markdown files
+
+> This file is just a README.md
 ## File-based Routing
 
 Routes will be auto-generated for Vue files in this dir with the same file structure.

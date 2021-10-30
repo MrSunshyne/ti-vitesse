@@ -4,7 +4,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { createPinia } from 'pinia'
-import VueApexCharts from 'vue3-apexcharts';
 
 import '@/styles/main.css'
 
@@ -31,5 +30,5 @@ const app = createApp(App);
 
 app.use(router);
 app.use(pinia);
-app.use(VueApexCharts);
+// app.use(VueApexCharts);
 app.mount('#app');
