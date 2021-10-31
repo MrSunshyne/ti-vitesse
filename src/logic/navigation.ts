@@ -1,13 +1,5 @@
-import {
-    HomeIcon,
-} from '@heroicons/vue/outline'
-import { RenderFunction } from 'vue'
-
-interface MenuItem {
-    name: string;
-    path: string;
-    icon: RenderFunction;
-}
+import { MenuItem } from '@/types'
+import { HomeIcon } from '@heroicons/vue/outline'
 
 const menu: MenuItem[] = [
     { path: "/", name: "Home", icon: HomeIcon },
