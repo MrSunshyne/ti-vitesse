@@ -4,7 +4,7 @@
     "build": "vite build",
     "dev": "vite --port 3333 --open",
     "lint": "eslint \"**/*.{vue,ts,js}\"",
-    "preview": "vite preview",
+    "preview": "npm run build && vite preview",
     "preview-https": "serve dist",
     "typecheck": "vue-tsc --noEmit"
   },
@@ -17,6 +17,7 @@
     "@tailwindcss/typography": "^0.4.1",
     "@vueuse/core": "^6.7.4",
     "apexcharts": "^3.29.0",
+    "eslint-plugin-import": "^2.25.2",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.0",
     "prism-theme-vars": "^0.2.2",

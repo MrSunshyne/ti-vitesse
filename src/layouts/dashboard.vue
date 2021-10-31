@@ -1,14 +1,6 @@
-<!-- This example requires Tailwind CSS v2.0+ -->
 <template>
-    <!--
-    This example requires updating your template:
-
-    ```
-    <html class="h-full bg-gray-100">
-    <body class="h-full">
-    ```
-    -->
     <div>
+        <!-- Mobile Menu Start -->
         <TransitionRoot as="template" :show="sidebarOpen">
             <Dialog as="div" class="fixed inset-0 flex z-40 md:hidden" @close="sidebarOpen = false">
                 <TransitionChild
@@ -54,22 +46,22 @@
                         </TransitionChild>
                         <div class="flex-1 h-0 pt-5 pb-4 overflow-y-auto">
                             <div class="flex-shrink-0 flex items-center px-4">
-                                <img class="h-8 w-auto" src="/logo.png" alt="Workflow" />
+                                <img class="h-8 w-auto" src="/logo.png" alt="TiVitesse" />
                             </div>
                             <nav class="mt-5 px-2 space-y-1">
-                                <a
-                                    v-for="item in navigation"
+                                <router-link
+                                    v-for="item in menu"
                                     :key="item.name"
-                                    :href="item.href"
-                                    :class="[item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'group flex items-center px-2 py-2 text-base font-medium rounded-md']"
+                                    :to="item.path"
+                                    :class="[item.path === currentPath ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'group flex items-center px-2 py-2 text-base font-medium rounded-md']"
                                 >
                                     <component
                                         :is="item.icon"
-                                        :class="[item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500', 'mr-4 flex-shrink-0 h-6 w-6']"
                                         aria-hidden="true"
+                                        :class="[item.path === currentPath ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500', 'mr-4 flex-shrink-0 h-6 w-6']"
                                     />
                                     {{ item.name }}
-                                </a>
+                                </router-link>
                             </nav>
                         </div>
                         <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
@@ -79,7 +71,6 @@
                                         <img
                                             class="inline-block h-10 w-10 rounded-full"
                                             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                            alt
                                         />
                                     </div>
                                     <div class="ml-3">
@@ -100,6 +91,7 @@
                 </div>
             </Dialog>
         </TransitionRoot>
+        <!-- Mobile Menu End -->
 
         <!-- Static sidebar for desktop -->
         <div class="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0">
@@ -107,49 +99,25 @@
             <div class="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
                 <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                     <div class="flex items-center flex-shrink-0 px-4">
-                        <img
-                            class="h-8 w-auto"
-                            src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg"
-                            alt="Workflow"
-                        />
+                        <Logo class="w-8 h-8" />
                     </div>
                     <nav class="mt-5 flex-1 px-2 bg-white space-y-1">
-                        <a
-                            v-for="item in navigation"
+                        <router-link
+                            v-for="item in menu"
                             :key="item.name"
-                            :href="item.href"
-                            :class="[item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md']"
+                            :to="item.path"
+                            :class="[item.path === currentPath ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md']"
                         >
                             <component
                                 :is="item.icon"
-                                :class="[item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500', 'mr-3 flex-shrink-0 h-6 w-6']"
                                 aria-hidden="true"
+                                :class="[item.path === currentPath ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500', 'mr-3 flex-shrink-0 h-6 w-6']"
                             />
                             {{ item.name }}
-                        </a>
+                        </router-link>
                     </nav>
                 </div>
-                <div class="flex-shrink-0 flex border-t border-gray-200 p-4">
-                    <a href="#" class="flex-shrink-0 w-full group block">
-                        <div class="flex items-center">
-                            <div>
-                                <img
-                                    class="inline-block h-9 w-9 rounded-full"
-                                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                    alt
-                                />
-                            </div>
-                            <div class="ml-3">
-                                <p
-                                    class="text-sm font-medium text-gray-700 group-hover:text-gray-900"
-                                >Tom Cook</p>
-                                <p
-                                    class="text-xs font-medium text-gray-500 group-hover:text-gray-700"
-                                >View profile</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <SidebarUserMenu />
             </div>
         </div>
         <div class="md:pl-64 flex flex-col flex-1">
@@ -181,45 +149,20 @@
     </div>
 </template> 
 
-<script lang="ts">
+<script setup lang="ts">
 import { ref } from 'vue'
 import { Dialog, DialogOverlay, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import {
-    CalendarIcon,
-    ChartBarIcon,
-    FolderIcon,
-    HomeIcon,
-    InboxIcon,
-    MenuIcon,
-    UsersIcon,
     XIcon,
+    MenuIcon
 } from '@heroicons/vue/outline'
+import Logo from '@/components/Logo.vue'
+import menu from '@/logic/navigation'
 
-const navigation = [
-    { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-    { name: 'Team', href: '#', icon: UsersIcon, current: false },
-    { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-    { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-    { name: 'Documents', href: '#', icon: InboxIcon, current: false },
-    { name: 'Reports', href: '#', icon: ChartBarIcon, current: false },
-]
 
-export default {
-    components: {
-        Dialog,
-        DialogOverlay,
-        TransitionChild,
-        TransitionRoot,
-        MenuIcon,
-        XIcon,
-    },
-    setup() {
-        const sidebarOpen = ref(false)
+const sidebarOpen = ref(false);
+const route = useRoute();
+const currentPath = route.path;
 
-        return {
-            navigation,
-            sidebarOpen,
-        }
-    },
-}
-</script>
+
+</script> 

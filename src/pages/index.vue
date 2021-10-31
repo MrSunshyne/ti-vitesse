@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useUserStore } from '@/stores/user'
-import SampleChartVue from '@/components/SampleChart.vue'
 
 const user = useUserStore()
 const name = ref(user.savedName)
@@ -47,7 +46,7 @@ const go = () => {
       <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis laudantium eum cum nemo quibusdam quia magnam ab consequatur commodi molestiae facere eius nesciunt, odio, voluptate, praesentium voluptates sed sequi delectus.</p>
     </div>
 
-    <SampleChartVue />
+    <SampleChart />
   </div>
 </template>
 
