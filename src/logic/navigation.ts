@@ -1,8 +1,15 @@
 import {
     HomeIcon,
 } from '@heroicons/vue/outline'
+import { RenderFunction } from 'vue'
 
-const menu = [
+interface MenuItem {
+    name: string;
+    path: string;
+    icon: RenderFunction;
+}
+
+const menu: MenuItem[] = [
     { path: "/", name: "Home", icon: HomeIcon },
     {
         name: '404',
