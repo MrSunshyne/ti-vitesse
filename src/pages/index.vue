@@ -40,13 +40,6 @@ const go = () => {
     <div>
       <button class="m-3 text-sm btn" :disabled="!name" @click="go">go</button>
     </div>
-
-    <div class="mx-auto">
-      <h2>Hello</h2>
-      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis laudantium eum cum nemo quibusdam quia magnam ab consequatur commodi molestiae facere eius nesciunt, odio, voluptate, praesentium voluptates sed sequi delectus.</p>
-    </div>
-
-    <SampleChart />
   </div>
 </template>
 
