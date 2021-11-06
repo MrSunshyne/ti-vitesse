@@ -98,7 +98,7 @@
         <div class="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-white">
             <div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
                 <div class="flex items-center flex-shrink-0 px-4">
-                    <Logo class="w-8 h-8" />
+                    <Branding>Ti Vitesse</Branding>
                 </div>
                 <nav class="mt-5 flex-1 px-2 bg-white space-y-1">
                     <router-link
@@ -127,7 +127,7 @@ import { Dialog, DialogOverlay, TransitionChild, TransitionRoot } from '@headles
 import {
     XIcon,
 } from '@heroicons/vue/outline';
-import Logo from '@/components/Logo.vue'
+import Branding from '@/components/Branding.vue'
 // import { MenuItem } from '@/types';
 
 const route = useRoute();

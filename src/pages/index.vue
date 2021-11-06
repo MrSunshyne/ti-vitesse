@@ -12,13 +12,16 @@ const go = () => {
 </script>
 
 <template>
-  <div>
-    <p class="text-4xl">
-      <carbon-campsite class="inline-block" />
-    </p>
-    <p>
-      <a rel="noreferrer" href="https://github.com/MrSunshyne/ti-vitesse" target="_blank">Ti-Vitesse</a>
-    </p>
+  <div class="grid place-items-center">
+    <Branding>
+      <p>
+        <a
+          rel="noreferrer"
+          href="https://github.com/MrSunshyne/ti-vitesse"
+          target="_blank"
+        >Ti-Vitesse</a>
+      </p>
+    </Branding>
     <p>
       <em class="text-sm opacity-75">Opinionated vite starter</em>
     </p>

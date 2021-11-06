@@ -4,6 +4,7 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
+    Branding: typeof import('./components/Branding.vue')['default']
     CarbonCampsite: typeof import('~icons/carbon/campsite')['default']
     CarbonDicomOverlay: typeof import('~icons/carbon/dicom-overlay')['default']
     CarbonLanguage: typeof import('~icons/carbon/language')['default']
@@ -16,9 +17,11 @@ declare module 'vue' {
     Footer: typeof import('./components/Footer.vue')['default']
     'Footer copy': typeof import('./components/Footer copy.vue')['default']
     Logo: typeof import('./components/Logo.vue')['default']
+    'Logo copy': typeof import('./components/Logo copy.vue')['default']
     README: typeof import('./components/README.md')['default']
     SampleChart: typeof import('./components/SampleChart.vue')['default']
     SidebarUserMenu: typeof import('./components/SidebarUserMenu.vue')['default']
+    ThemeSwitcher: typeof import('./components/ThemeSwitcher.vue')['default']
   }
 }
 

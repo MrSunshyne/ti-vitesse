@@ -4,7 +4,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { createPinia } from 'pinia'
-
+import vheme from '@/libs/vheme'
 import '@/styles/main.css'
 
 const routes = setupLayouts(generatedRoutes)
@@ -29,6 +29,7 @@ const pinia = createPinia()
 
 const app = createApp(App);
 
+app.use(vheme);
 app.use(router);
 app.use(pinia);
 // app.use(VueApexCharts);
