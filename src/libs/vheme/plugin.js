@@ -1,9 +1,6 @@
 const plugin = require('tailwindcss/plugin')
 const paletteGenerator = require('@bobthered/tailwindcss-palette-generator');
 
-const prime = paletteGenerator('#60976c', 'hsl');
-console.log(prime);
-
 module.exports = plugin.withOptions(
     function (options) {
         return function ({ addUtilities, e, theme, variants }) {
@@ -28,7 +25,7 @@ module.exports = plugin.withOptions(
                         DEFAULT: '#ff0000',
                         350: '#ff0000',
                     },
-                    'primary': paletteGenerator('#60976c').primary,
+                    'primary': paletteGenerator('#60976c', 'hsl').primary,
                     'layer': {
                         DEFAULT: 'var(--layer-200)',
                         100: 'var(--layer-100)',

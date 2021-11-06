@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.10.0",
-    "@bobthered/tailwindcss-palette-generator": "file:../tailwindcss-palette-generator",
+    "@bobthered/tailwindcss-palette-generator": "MrSunshyne/tailwindcss-palette-generator",
     "@iconify-json/carbon": "^1.0.8",
     "@intlify/vite-plugin-vue-i18n": "^2.5.0",
     "@types/markdown-it-link-attributes": "^3.0.1",
