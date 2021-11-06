@@ -100,6 +100,7 @@
                 <div class="flex items-center flex-shrink-0 px-4">
                     <Branding>Ti Vitesse</Branding>
                 </div>
+
                 <nav class="mt-5 flex-1 px-2 bg-white space-y-1">
                     <router-link
                         v-for="item in menu"
@@ -122,21 +123,21 @@
 </template>
 
 <script setup lang="ts">
-// import { PropType } from 'vue';
+import { PropType, computed } from 'vue';
 import { Dialog, DialogOverlay, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import {
     XIcon,
 } from '@heroicons/vue/outline';
 import Branding from '@/components/Branding.vue'
-// import { MenuItem } from '@/types';
+import { MenuItem } from '@/types';
 
 const route = useRoute();
-const currentPath = route.path;
+const currentPath = computed(() => route.path);
 
 
 defineProps({
     menu: {
-        type: Array, //as PropType<MenuItem[]>,
+        type: Array as PropType<MenuItem[]>,
         required: true,
     },
     sidebarOpen: {
