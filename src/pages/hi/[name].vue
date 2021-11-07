@@ -16,7 +16,7 @@ watchEffect(() => {
       <carbon-pedestrian class="inline-block" />
     </p>
     <p>
-      hi {{  props.name }}
+      hi {{ props.name }}
     </p>
 
     <p class="text-sm opacity-50">

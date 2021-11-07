@@ -9,4 +9,3 @@
     </transition>
   </router-view>
 </template>
-

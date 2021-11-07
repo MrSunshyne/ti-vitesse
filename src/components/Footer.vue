@@ -2,8 +2,8 @@
 import menu from '@/logic/navigation'
 import { isDark, toggleDark } from '@/logic'
 
-const route = useRoute();
-const currentPath = route.path;
+const route = useRoute()
+const currentPath = route.path
 
 </script>
 
@@ -28,4 +28,3 @@ const currentPath = route.path;
     </nav>
   </div>
 </template>
-  

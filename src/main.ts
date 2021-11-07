@@ -1,9 +1,9 @@
-import App from '@/App.vue'
-import { createApp } from 'vue';
-import { createRouter, createWebHistory } from 'vue-router';
+import { createApp } from 'vue'
+import { createRouter, createWebHistory } from 'vue-router'
 import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { createPinia } from 'pinia'
+import App from '@/App.vue'
 import vheme from '@/libs/vheme'
 import '@/styles/main.css'
 
@@ -12,24 +12,25 @@ const routes = setupLayouts(generatedRoutes)
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior: function (to, from, savedPosition) {
+  scrollBehavior(to, from, savedPosition) {
     if (to.hash) {
       return {
         el: to.hash,
         offset: { x: 0, y: 10 },
-      };
-    } else {
-      return { el: 'body' };
+      }
+    }
+    else {
+      return { el: 'body' }
     }
   },
-});
+})
 
 const pinia = createPinia()
 
-const app = createApp(App);
+const app = createApp(App)
 
-app.use(vheme);
-app.use(router);
-app.use(pinia);
+app.use(vheme)
+app.use(router)
+app.use(pinia)
 // app.use(VueApexCharts);
-app.mount('#app');
+app.mount('#app')

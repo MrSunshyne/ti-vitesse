@@ -1,6 +1,9 @@
 {
-  "cSpell.words": ["Vitesse"],
-  "prettier.enable": false,
+  "cSpell.words": [
+    "Vitesse",
+    "ti-vitesse"
+  ],
+  // "prettier.enable": false,
   "typescript.tsdk": "node_modules/typescript/lib",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
@@ -8,17 +11,10 @@
   "files.associations": {
     "*.css": "postcss",
   },
-  "i18n-ally.localesPaths": [
-    "locales",
-    "node_modules.bak/eslint/messages",
-    "node_modules.bak/yargs/locales",
-    "node_modules.bak/highlight.js/lib/languages",
-    "node_modules.bak/workbox-core/models/messages",
-    "node_modules.bak/workbox-core/src/models/messages"
-  ],
   "eslint.alwaysShowStatus": true,
   "eslint.codeActionsOnSave.mode": "problems",
   "eslint.format.enable": true,
+  "peacock.color": "#8cb795",
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#abcbb2",
     "activityBar.activeBorder": "#8175aa",
@@ -41,5 +37,4 @@
     "titleBar.inactiveBackground": "#8cb79599",
     "titleBar.inactiveForeground": "#15202b99"
   },
-  "peacock.color": "#8cb795"
 }

@@ -3,7 +3,7 @@
   "scripts": {
     "build": "vite build",
     "dev": "vite --port 3333 --open",
-    "lint": "eslint \"**/*.{vue,ts,js}\"",
+    "lint": "eslint \"**/*.{vue,ts,js}\" --fix",
     "preview": "npm run build && vite preview",
     "preview-https": "serve dist",
     "typecheck": "vue-tsc --noEmit"
@@ -11,7 +11,7 @@
   "dependencies": {
     "@headlessui/vue": "^1.4.1",
     "@heroicons/vue": "^1.0.5",
-    "@mrsunshyne/tailwindcss-palette-generator": "file:../tailwindcss-palette-generator",
+    "@bobthered/tailwindcss-palette-generator": "github:MrSunshyne/tailwindcss-palette-generator",
     "@tailwindcss/aspect-ratio": "^0.3.0",
     "@tailwindcss/forms": "^0.3.4",
     "@tailwindcss/line-clamp": "^0.2.2",
@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.10.0",
-    "@bobthered/tailwindcss-palette-generator": "MrSunshyne/tailwindcss-palette-generator",
     "@iconify-json/carbon": "^1.0.8",
     "@intlify/vite-plugin-vue-i18n": "^2.5.0",
     "@types/markdown-it-link-attributes": "^3.0.1",
@@ -41,7 +40,7 @@
     "autoprefixer": "^10.4.0",
     "critters": "^0.0.14",
     "cross-env": "^7.0.3",
-    "eslint": "^8.1.0",
+    "eslint": "^7.12.1",
     "https-localhost": "^4.7.0",
     "markdown-it-link-attributes": "^3.0.0",
     "markdown-it-prism": "^2.2.1",

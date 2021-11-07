@@ -41,7 +41,9 @@ const go = () => {
     <label class="hidden" for="input">What's your name</label>
 
     <div>
-      <button class="m-3 text-sm btn" :disabled="!name" @click="go">go</button>
+      <button class="m-3 text-sm btn" :disabled="!name" @click="go">
+        go
+      </button>
     </div>
   </div>
 </template>

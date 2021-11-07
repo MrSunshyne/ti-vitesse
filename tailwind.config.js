@@ -37,7 +37,7 @@ module.exports = {
     require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
     require('./src/libs/vheme/plugin'),
-    function ({ addBase, theme }) {
+    function({ addBase, theme }) {
       function extractColorVars(colorObj, colorGroup = '') {
         return Object.keys(colorObj).reduce((vars, colorKey) => {
           const value = colorObj[colorKey]

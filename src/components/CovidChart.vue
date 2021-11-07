@@ -1,158 +1,178 @@
 <template>
-    <div class="w-full">
-        <h1 class="text-xl font- mt-10">Covid Chart for {{ selectedCountry }}</h1>
-        <div v-if="series">
-            <VueApexCharts
-                width="100%"
-                class="w-full"
-                type="line"
-                :options="chartOptions"
-                :series="series"
-            ></VueApexCharts>
-        </div>
+  <div class="w-full">
+    <div class="flex justify-between">
+      <h1 class="text-xl font- mt-10">
+        Covid Chart for
+        <template v-if="loadingData">loading...</template>
+        <template v-else>{{ selectedCountry }}</template>
+      </h1>
+      <button @click="clearChart()">Clear Chart</button>
+    </div>
+    <div v-if="series">
+      <VueApexCharts
+        width="100%"
+        class="w-full"
+        type="line"
+        :options="chartOptions"
+        :series="series"
+      ></VueApexCharts>
+    </div>
 
-        <div class="flex gap-4 flex-wrap">
-            <div
-                class="hover:bg-gray-400 p-1 cursor-pointer text-xs"
-                :class="country === selectedCountry ? 'bg-gray-500' : ''"
-                v-for="country in allCountries"
-                @click="selectedCountry = country"
-            >{{ country }}</div>
-        </div>
-        <!-- <pre>
+    <div class="flex gap-2 flex-wrap">
+      <div
+        v-for="country in allCountries"
+        :key="country"
+        class="hover:bg-gray-400 p-1 cursor-pointer text-xs"
+        :class="country === selectedCountry ? 'bg-gray-500' : ''"
+        @click="selectedCountry = country"
+      >{{ country }}</div>
+    </div>
+    <!-- <pre>
             {{ allCountries }}
-        </pre>-->
-        <!-- <pre>
+    </pre>-->
+    <!-- <pre>
             {{ variable }}
             {{ series }}
-        </pre>-->
-    </div>
+    </pre>-->
+  </div>
 </template>
 
 <script setup lang="ts">
-import VueApexCharts from 'vue3-apexcharts';
-import { ref, onMounted, watchEffect } from 'vue'
-interface dataPoint {
-    "date": String,
-    "confirmed": Number,
-    "deaths": Number,
-    "recovered": Number
+import VueApexCharts from 'vue3-apexcharts'
+import { ApexOptions } from 'apexcharts'
+import { Ref, ref, watchEffect } from 'vue'
+
+export interface CountryEntity {
+  date: string
+  confirmed: number
+  deaths: number
+  recovered: number
+}
+
+export interface CountryData {
+  [key: string]: CountryEntity[]
 }
 
 interface Timeline {
-    x: String,
-    y: Number
+  x: string
+  y: number
 }
 interface Series {
-    name: String,
-    data?: Timeline[]
+  name: string
+  data?: Timeline[]
 }
 
-let dataFromEndpoint = ref(null);
-let series = ref(null) as any
-let allCountries = ref([]) as any
-let selectedCountry = ref('Mauritius') as string;
-let variable = ref(null) as any
+const series = ref(null) as any
+const allCountries = ref([]) as any
+const selectedCountry = ref('Mauritius') as Ref<string>
+const loadingData = ref(false) as Ref<Boolean>
+const chartOptions: ApexOptions = reactive({
+  chart: {},
+  noData: {
+    text: 'No Data available',
+    align: 'center',
+    verticalAlign: 'middle',
+    offsetX: 0,
+    offsetY: 0,
+    style: {
+      color: '#000000',
+      fontSize: '14px',
+    },
+  },
+})
 
-function fetchData() {
-    return fetch('https://pomber.github.io/covid19/timeseries.json')
-        .then(response => response.json())
-};
+function fetchData(countryName: string) {
+  loadingData.value = true
+  return fetch('https://pomber.github.io/covid19/timeseries.json')
+    .then(response => response.json())
+    .then((data) => {
+      loadingData.value = false
+      populateCountriesList(data)
+      return data
+    })
+}
 
 function pickCountry(countries: any, countryName: string) {
-    const country = countries[countryName];
-    return country;
-};
+  const country = countries[countryName]
+  return country
+}
 
 function populateCountriesList(countries: any) {
-    const countryNames = Object.keys(countries);
-    allCountries.value = countryNames;
-};
-
-
-function buildSeries(data) {
-    const series: Series[] = [];
-    const confirmed: Timeline[] = [];
-    const deaths: Timeline[] = [];
-    const recovered: Timeline[] = [];
-
-    const country = data;
-
-    // country.forEach((dataPoint: dataPoint) => {
-    //     confirmed.push({
-    //         x: dataPoint.date,
-    //         y: dataPoint.confirmed
-    //     });
-    //     deaths.push({
-    //         x: dataPoint.date,
-    //         y: dataPoint.deaths
-    //     });
-    //     recovered.push({
-    //         x: dataPoint.date,
-    //         y: dataPoint.recovered
-    //     });
-    // });
-
-    for (let index = 0; index < country.length; index++) {
-        const element = country[index];
-
-        confirmed.push({
-            x: element.date,
-            y: element.confirmed
-        });
-        deaths.push({
-            x: element.date,
-            y: element.deaths
-        });
-        recovered.push({
-            x: element.date,
-            y: element.recovered
-        });
-
-    }
-
-    series.push({
-        name: 'Confirmed',
-        data: confirmed
-    });
-    series.push({
-        name: 'Deaths',
-        data: deaths
-    });
-    series.push({
-        name: 'Recovered',
-        data: recovered
-    });
-
-    return series;
+  const countryNames = Object.keys(countries)
+  allCountries.value = countryNames
 }
 
-function buildChart(data, country) {
-    // let data = dataFromEndpoint.value
-    let pickedCountry = pickCountry(data, country);
-    series.value = buildSeries(pickedCountry);
+function buildSeries(data: CountryEntity[]) {
+  const series: Series[] = []
+  const confirmed: Timeline[] = []
+  const deaths: Timeline[] = []
+  const recovered: Timeline[] = []
 
-    console.log(series)
+  // const country = data;
+
+  // country.forEach((dataPoint: dataPoint) => {
+  //     confirmed.push({
+  //         x: dataPoint.date,
+  //         y: dataPoint.confirmed
+  //     });
+  //     deaths.push({
+  //         x: dataPoint.date,
+  //         y: dataPoint.deaths
+  //     });
+  //     recovered.push({
+  //         x: dataPoint.date,
+  //         y: dataPoint.recovered
+  //     });
+  // });
+
+  for (let index = 0; index < data.length; index++) {
+    const element = data[index]
+
+    confirmed.push({
+      x: element.date,
+      y: element.confirmed,
+    })
+    deaths.push({
+      x: element.date,
+      y: element.deaths,
+    })
+    recovered.push({
+      x: element.date,
+      y: element.recovered,
+    })
+  }
+
+  series.push({
+    name: 'Confirmed',
+    data: confirmed,
+  })
+  series.push({
+    name: 'Deaths',
+    data: deaths,
+  })
+  series.push({
+    name: 'Recovered',
+    data: recovered,
+  })
+
+  return series
 }
 
-let chartOptions = {
-    chart: {
-    }
+function buildChart(data: CountryData) {
+  const pickedCountry = pickCountry(data, selectedCountry.value)
+  series.value = buildSeries(pickedCountry)
+  // console.log(series)
 }
 
-onMounted(() => {
-    console.log('mounted');
-    variable.value = 'y'
-});
+function clearChart() {
+  series.value = []
+}
 
 watchEffect(() => {
-    console.log('watchEffect');
-    fetchData().then(data => {
-        // dataFromEndpoint.value = data;
-        populateCountriesList(data);
-        buildChart(data, selectedCountry.value);
-    });
-});
-
-
+  // console.log('watchEffect')
+  clearChart()
+  fetchData(selectedCountry.value).then((data) => {
+    buildChart(data)
+  })
+})
 </script>
