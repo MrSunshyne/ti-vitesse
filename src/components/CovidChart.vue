@@ -40,8 +40,8 @@
 <script setup lang="ts">
 import VueApexCharts from 'vue3-apexcharts'
 import { ApexOptions } from 'apexcharts'
-import { Ref, ref, watchEffect } from 'vue'
-
+import { Ref, ref, watch } from 'vue'
+import { getCovidData } from '@/services/covid.api'
 export interface CountryEntity {
   date: string
   confirmed: number
@@ -80,16 +80,11 @@ const chartOptions: ApexOptions = reactive({
     },
   },
 })
-
-function fetchData(countryName: string) {
-  loadingData.value = true
-  return fetch('https://pomber.github.io/covid19/timeseries.json')
-    .then(response => response.json())
-    .then((data) => {
-      loadingData.value = false
-      populateCountriesList(data)
-      return data
-    })
+function fetchData() {
+  getCovidData(selectedCountry.value).then((data) => {
+    populateCountriesList(data)
+    buildChart(data, selectedCountry.value)
+  })
 }
 
 function pickCountry(countries: any, countryName: string) {
@@ -107,23 +102,6 @@ function buildSeries(data: CountryEntity[]) {
   const confirmed: Timeline[] = []
   const deaths: Timeline[] = []
   const recovered: Timeline[] = []
-
-  // const country = data;
-
-  // country.forEach((dataPoint: dataPoint) => {
-  //     confirmed.push({
-  //         x: dataPoint.date,
-  //         y: dataPoint.confirmed
-  //     });
-  //     deaths.push({
-  //         x: dataPoint.date,
-  //         y: dataPoint.deaths
-  //     });
-  //     recovered.push({
-  //         x: dataPoint.date,
-  //         y: dataPoint.recovered
-  //     });
-  // });
 
   for (let index = 0; index < data.length; index++) {
     const element = data[index]
@@ -158,21 +136,24 @@ function buildSeries(data: CountryEntity[]) {
   return series
 }
 
-function buildChart(data: CountryData) {
-  const pickedCountry = pickCountry(data, selectedCountry.value)
+function buildChart(data: CountryData, countryName: string) {
+  const pickedCountry = pickCountry(data, countryName)
   series.value = buildSeries(pickedCountry)
-  // console.log(series)
 }
 
 function clearChart() {
   series.value = []
 }
 
-watchEffect(() => {
-  // console.log('watchEffect')
-  clearChart()
-  fetchData(selectedCountry.value).then((data) => {
-    buildChart(data)
-  })
+onMounted(() => {
+  fetchData()
 })
+
+watch(
+  () => selectedCountry,
+  (selectedCountry) => {
+    // console.log('watchEffect')
+    clearChart()
+    fetchData()
+  }, { deep: true })
 </script>
