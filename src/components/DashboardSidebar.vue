@@ -1,7 +1,7 @@
 <template>
   <!-- Mobile Menu Start -->
   <TransitionRoot as="template" :show="sidebarOpen">
-    <Dialog as="div" class="fixed inset-0 flex z-40 md:hidden" @close="sidebarOpen = false">
+    <Dialog as="div" class="fixed inset-0 flex z-40 md:hidden" @close="closeSidebar()">
       <TransitionChild
         as="template"
         enter="transition-opacity ease-linear duration-300"
@@ -36,7 +36,7 @@
               <button
                 type="button"
                 class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                @click="sidebarOpen = false"
+                @click="closeSidebar()"
               >
                 <span class="sr-only">Close sidebar</span>
                 <XIcon class="h-6 w-6 text-white" aria-hidden="true" />
@@ -121,7 +121,7 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, computed } from 'vue'
+import { PropType, computed, defineProps, defineEmits } from 'vue'
 import { Dialog, DialogOverlay, TransitionChild, TransitionRoot } from '@headlessui/vue'
 import {
   XIcon,
@@ -142,4 +142,11 @@ defineProps({
     required: true,
   },
 })
+
+const emit = defineEmits(['update:sidebarOpen'])
+
+function closeSidebar() {
+  emit('update:sidebarOpen', false)
+}
+
 </script>
