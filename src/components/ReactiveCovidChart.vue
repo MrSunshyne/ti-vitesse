@@ -2,7 +2,7 @@
   <div class="w-full">
     <div class="flex justify-between">
       <h1 class="text-xl font- mt-10">
-        Covid Chart for
+        Vue Query Covid Chart for
         <template v-if="isLoading">loading...</template>
         <template v-else>{{ selectedCountry }}</template>
       </h1>
@@ -42,6 +42,7 @@ import VueApexCharts from 'vue3-apexcharts'
 import { ApexOptions } from 'apexcharts'
 import { Ref, ref } from 'vue'
 import { useQuery } from 'vue-query'
+import { refDefault } from '@vueuse/core'
 import { getCovidData } from '@/services/covid.api'
 
 export interface CountryEntity {
@@ -79,29 +80,22 @@ const chartOptions: ApexOptions = reactive({
     },
   },
 })
-const { data, isLoading, isFetched } = useQuery('data', getCovidData)
 
-const pickedCountry = computed(() => {
-  if (isFetched.value)
-    return pickCountry(data.value, selectedCountry.value)
-  else
-    return []
+const { data, isLoading, isFetched } = useQuery('countries', getCovidData, {
+  initialData: [],
+  placeholderData: [],
 })
 
-const series = computed(() => {
-  return buildSeries(pickedCountry.value)
-})
+const countries = refDefault(data, []) // computed(() => data.value || [])
 
-const allCountries = computed(() => {
-  if (isFetched.value)
-    return Object.keys(data.value)
-  else
-    return []
-})
+const pickedCountry = computed(() => pickCountry(countries.value, selectedCountry.value))
+
+const series = computed(() => buildSeries(pickedCountry.value))
+
+const allCountries = computed(() => Object.keys(countries.value))
 
 function pickCountry(countries: any, countryName: string) {
-  const country = countries[countryName]
-  return country
+  return countries[countryName] || []
 }
 
 function buildSeries(data: CountryEntity[]) {
@@ -144,7 +138,9 @@ function buildSeries(data: CountryEntity[]) {
 }
 
 function clearChart() {
-  series.value = []
+  // countries.value = []
+  // console.log(remove.value)
+  // remove.value()
 }
 
 </script>
