@@ -9,9 +9,9 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
+    "@bobthered/tailwindcss-palette-generator": "github:MrSunshyne/tailwindcss-palette-generator",
     "@headlessui/vue": "^1.4.1",
     "@heroicons/vue": "^1.0.5",
-    "@bobthered/tailwindcss-palette-generator": "github:MrSunshyne/tailwindcss-palette-generator",
     "@tailwindcss/aspect-ratio": "^0.3.0",
     "@tailwindcss/forms": "^0.3.4",
     "@tailwindcss/line-clamp": "^0.2.2",
@@ -25,6 +25,7 @@
     "vue": "^3.2.20",
     "vue-demi": "^0.12.0",
     "vue-i18n": "^9.1.9",
+    "vue-query": "^1.13.0",
     "vue-router": "^4.0.12",
     "vue3-apexcharts": "^1.4.1"
   },
