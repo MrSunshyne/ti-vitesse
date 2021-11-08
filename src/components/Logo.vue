@@ -33,7 +33,14 @@ export default {
     </mask>
     <g mask="url(#mask0_2:3)">
       <rect x="400" width="400" height="400" fill="black" fill-opacity="0.35" />
-      <rect x="400" y="400" width="400" height="400" fill="black" fill-opacity="0.47" />
+      <rect
+        x="400"
+        y="400"
+        width="400"
+        height="400"
+        fill="black"
+        fill-opacity="0.47"
+      />
       <rect y="400" width="400" height="400" fill="black" fill-opacity="0.28" />
       <rect width="400" height="400" fill="black" fill-opacity="0.17" />
     </g>

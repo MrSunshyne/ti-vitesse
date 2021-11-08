@@ -42,6 +42,7 @@ import VueApexCharts from 'vue3-apexcharts'
 import { ApexOptions } from 'apexcharts'
 import { Ref, ref, watch } from 'vue'
 import { getCovidData } from '@/services/covid.api'
+
 export interface CountryEntity {
   date: string
   confirmed: number
@@ -57,6 +58,7 @@ interface Timeline {
   x: string
   y: number
 }
+
 interface Series {
   name: string
   data?: Timeline[]
@@ -66,8 +68,10 @@ const series = ref(null) as any
 const allCountries = ref([]) as any
 const selectedCountry = ref('Mauritius') as Ref<string>
 const loadingData = ref(false) as Ref<Boolean>
+
 const chartOptions: ApexOptions = reactive({
   chart: {},
+
   noData: {
     text: 'No Data available',
     align: 'center',
@@ -80,6 +84,7 @@ const chartOptions: ApexOptions = reactive({
     },
   },
 })
+
 function fetchData() {
   getCovidData(selectedCountry.value).then((data) => {
     populateCountriesList(data)
