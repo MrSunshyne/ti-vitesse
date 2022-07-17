@@ -5,7 +5,7 @@ useQueryProvider()
 </script>
 
 <template>
-  <router-view v-slot="{ Component, route }">
+  <router-view v-slot="{ Component }">
     <transition name="slide" mode="out-in">
       <component :is="Component" />
     </transition>

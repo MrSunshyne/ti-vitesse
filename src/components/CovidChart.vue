@@ -1,46 +1,8 @@
-<template>
-  <div class="w-full">
-    <div class="flex justify-between">
-      <h1 class="text-xl font- mt-10">
-        Covid Chart for
-        <template v-if="loadingData">loading...</template>
-        <template v-else>{{ selectedCountry }}</template>
-      </h1>
-      <button @click="clearChart()">Clear Chart</button>
-    </div>
-    <div v-if="series">
-      <VueApexCharts
-        width="100%"
-        class="w-full"
-        type="line"
-        :options="chartOptions"
-        :series="series"
-      ></VueApexCharts>
-    </div>
-
-    <div class="flex gap-2 flex-wrap">
-      <div
-        v-for="country in allCountries"
-        :key="country"
-        class="hover:bg-gray-400 p-1 cursor-pointer text-xs"
-        :class="country === selectedCountry ? 'bg-gray-500' : ''"
-        @click="selectedCountry = country"
-      >{{ country }}</div>
-    </div>
-    <!-- <pre>
-            {{ allCountries }}
-    </pre>-->
-    <!-- <pre>
-            {{ variable }}
-            {{ series }}
-    </pre>-->
-  </div>
-</template>
-
 <script setup lang="ts">
 import VueApexCharts from 'vue3-apexcharts'
-import { ApexOptions } from 'apexcharts'
-import { Ref, ref, watch } from 'vue'
+import type { ApexOptions } from 'apexcharts'
+import type { Ref } from 'vue'
+import { ref, watch } from 'vue'
 import { getCovidData } from '@/services/covid.api'
 
 export interface CountryEntity {
@@ -162,3 +124,42 @@ watch(
     fetchData()
   }, { deep: true })
 </script>
+
+<template>
+  <div class="w-full">
+    <div class="flex justify-between">
+      <h1 class="text-xl font- mt-10">
+        Covid Chart for
+        <template v-if="loadingData">loading...</template>
+        <template v-else>{{ selectedCountry }}</template>
+      </h1>
+      <button @click="clearChart()">Clear Chart</button>
+    </div>
+    <div v-if="series">
+      <VueApexCharts
+        width="100%"
+        class="w-full"
+        type="line"
+        :options="chartOptions"
+        :series="series"
+      />
+    </div>
+
+    <div class="flex gap-2 flex-wrap">
+      <div
+        v-for="country in allCountries"
+        :key="country"
+        class="hover:bg-gray-400 p-1 cursor-pointer text-xs"
+        :class="country === selectedCountry ? 'bg-gray-500' : ''"
+        @click="selectedCountry = country"
+      >{{ country }}</div>
+    </div>
+    <!-- <pre>
+            {{ allCountries }}
+    </pre> -->
+    <!-- <pre>
+            {{ variable }}
+            {{ series }}
+    </pre> -->
+  </div>
+</template>

@@ -4,7 +4,6 @@ import generatedRoutes from 'virtual:generated-pages'
 import { setupLayouts } from 'virtual:generated-layouts'
 import { createPinia } from 'pinia'
 import App from '@/App.vue'
-import vheme from '@/libs/vheme'
 import '@/styles/main.css'
 
 const routes = setupLayouts(generatedRoutes)
@@ -12,7 +11,7 @@ const routes = setupLayouts(generatedRoutes)
 const router = createRouter({
   history: createWebHistory(),
   routes,
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(to) {
     if (to.hash) {
       return {
         el: to.hash,
@@ -29,7 +28,6 @@ const pinia = createPinia()
 
 const app = createApp(App)
 
-app.use(vheme)
 app.use(router)
 app.use(pinia)
 // app.use(VueApexCharts);

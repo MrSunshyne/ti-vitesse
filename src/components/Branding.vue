@@ -12,8 +12,7 @@ export default {
 <template>
   <div class="flex items-center gap-2">
     <Logo class="w-8 h-8" />
-    <div class="font-medium">
-      <slot />
+    <div class="font-medium">      <slot />
     </div>
   </div>
 </template>

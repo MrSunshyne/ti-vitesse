@@ -37,7 +37,7 @@ const go = () => {
       autocomplete="false"
       class="outline-none active:outline-none px-5 py-4 w-[250px] text-center bg-transparent rounded border-gray-200 dark:border-gray-700"
       @keydown.enter="go"
-    />
+    >
     <label class="hidden" for="input">What's your name</label>
 
     <div>

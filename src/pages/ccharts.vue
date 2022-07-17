@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import CovidChart from '@/components/ReactiveCovidChart.vue'
-
 </script>
 
 <template>

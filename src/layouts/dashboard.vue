@@ -1,3 +1,13 @@
+<script setup lang="ts">
+import { ref } from 'vue'
+import {
+  MenuIcon,
+} from '@heroicons/vue/outline'
+import menu from '@/logic/navigation'
+
+const sidebarOpen = ref(false)
+</script>
+
 <template>
   <div>
     <DashboardSidebar v-model:menu="menu" v-model:sidebarOpen="sidebarOpen" />
@@ -31,14 +41,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-import { ref } from 'vue'
-import {
-  MenuIcon,
-} from '@heroicons/vue/outline'
-import menu from '@/logic/navigation'
-
-const sidebarOpen = ref(false)
-
-</script>

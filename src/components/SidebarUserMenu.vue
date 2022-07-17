@@ -6,7 +6,7 @@
           <img
             class="inline-block h-9 w-9 rounded-full"
             src="https://github.com/MrSunshyne.png"
-          />
+          >
         </div>
         <div class="ml-3">
           <p

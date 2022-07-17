@@ -1,7 +1,7 @@
-import { RenderFunction } from 'vue'
+import type { FunctionalComponent, HTMLAttributes, VNodeProps } from 'vue'
 
 export interface MenuItem {
   name: string
   path: string
-  icon: RenderFunction
+  icon: FunctionalComponent<HTMLAttributes & VNodeProps, {}>
 }

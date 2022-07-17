@@ -1,13 +1,3 @@
-<template>
-  <div class="flex flex-col items-center">
-    <h1 class="text-xl font- mt-10">
-      Test Apex Charts
-    </h1>
-
-    <VueApexCharts width="500" type="bar" :options="chartOptions" :series="series"></VueApexCharts>
-  </div>
-</template>
-
 <script setup lang="ts">
 import VueApexCharts from 'vue3-apexcharts'
 
@@ -26,5 +16,14 @@ const series = [
     data: [30, 40, 35, 50, 49, 60, 70, 91],
   },
 ]
-
 </script>
+
+<template>
+  <div class="flex flex-col items-center">
+    <h1 class="text-xl font- mt-10">
+      Test Apex Charts
+    </h1>
+
+    <VueApexCharts width="500" type="bar" :options="chartOptions" :series="series" />
+  </div>
+</template>
